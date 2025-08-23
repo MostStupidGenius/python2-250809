@@ -13,7 +13,7 @@
 # 2. 리스트를 두 개로 쪼갠다.
 # 3. 재귀적으로 함수를 호출한다
 # 4. 각각 정렬된 좌우 리스트를 하나의 리스트로 병합하여 반환한다.
-def merge_sort(arr:list):
+def merge_sort(arr:list, show:bool=True):
     # 리스트의 길이를 담을 변수
     length = len(arr)
     # 기본케이스
@@ -27,8 +27,11 @@ def merge_sort(arr:list):
 
     # 쪼갠 좌우의 리스트를 재귀적으로 merge_sort를 호출하여
     # 다시 좌우에 담아준다.
-    left = merge_sort(left)
-    right = merge_sort(right)
+    left = merge_sort(left, show)
+    right = merge_sort(right, show)
+    if show:
+        print("left: ", left)
+        print("right: ", right)
 
     # 좌우 리스트를 하나로 병합하면서 정렬하는 함수를 호출한다.
     # 병합 및 정렬된 새로운 리스트를 반환한다.
@@ -55,7 +58,13 @@ def merge(left:list, right:list):
 
     # 왼쪽 리스트의 인덱스가 왼쪽 리스트 요소 개수보다 작은 동안
     # 혹은 오른쪽에도 동일하게 적용
-    while left_index < len(left) or right_index < len(right):
+    # print("left length: ", len(left))
+    # print("right length: ", len(right))
+    # 둘 다 인덱스의 길이가 요소의 개수보다 많으면 안 되기 때문에
+    # and로 조건식을 연결해주어야 한다.
+    while left_index < len(left) and right_index < len(right):
+        # print("left index:", left_index)
+        # print("right index:", right_index)
         # 현재 인덱스 요소의 값을 서로 비교하여
         # 더 작은 값을 새로운 리스트에 추가(append)한 뒤
         # 더 작은 값이 속한 인덱스의 값을 1 증가시킨다
@@ -83,3 +92,12 @@ def merge(left:list, right:list):
     # 두 경우 모두 실행한다.
     result.extend(left[left_index:])
     result.extend(right[right_index:])
+    return result
+
+if __name__ == "__main__":
+    import random
+    data = list(range(30))
+    random.shuffle(data)
+    print(data)
+    sorted_data = merge_sort(data, False)
+    print(sorted_data)
