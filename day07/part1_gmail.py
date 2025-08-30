@@ -32,11 +32,9 @@ load_dotenv() # .env 환경변수 로드. 따로 경로를 입력하지 않았�
 # 절대경로(C:/...) 혹은 현재 프로젝트를 기준으로 하는 상대 경로를 작성해주면 된다.
 # load_dotenv("day07/dev.env") # .env 환경변수 로드
 
-
 # 해당되는 키값에 담긴 값을 가져오는 코드
 SENDER = os.getenv("SENDER")
 APP_PASSWORD = os.getenv("APP_PASSWORD")
-
 
 # 이메일 전송을 위한 함수
 # 필요한 정보(매개변수)
