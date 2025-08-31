@@ -53,8 +53,14 @@ def button_click():
 	# 출력 여부를 결정하는 변수 가져오기
 	is_display = check_var.get()
 
+	# 남성/여성 선택지의 숫자값을 받아와서 원하는 메시지를 띄울 수 있다.
+	choice = btn_variable.get()
+	gender = "남성" if choice == 0 else "여성"
+
 	# 출력 내용에 추가한다.
-	if is_display: msgbox.showinfo(title="환영", message=f"{var}환영합니다. 버튼 클릭 완료",)
+	if is_display: msgbox.showinfo(title="환영",
+						message=f"{var}환영합니다.\
+						 버튼 클릭 완료\n성별: {gender}",)
 
 # 버튼 만들기
 button = tk.Button(root, text="클릭", command=button_click,
@@ -79,6 +85,23 @@ checkBox = tk.Checkbutton(root, text="알림 받기", variable=check_var)
 checkBox.pack()
 
 # 라디오버튼
+# 여러 선택지가 있을 때 이중 하나만 고르도록 강제하는 버튼을 의미한다.
+# 다수의 선택지를 써야 하므로 라디오 버튼은 하나만 있으면 안 된다.
+# 또, 해당 버튼을 눌렀을 때 변화하는 값을 다른 변수에 저장하여 사용해야 하므로
+# 해당 변수 또한 필요하다.
+
+# 라디오 버튼 변수 
+btn_variable = tk.IntVar() # 숫자 값을 담을 tk 변수
+
+radioBtn_1 = tk.Radiobutton(root, text="남성", variable=btn_variable,
+							value=0,
+							)
+radioBtn_2 = tk.Radiobutton(root, text="여성",
+							variable=btn_variable,
+							value=1,
+							)
+radioBtn_1.pack()
+radioBtn_2.pack()
 
 
 # 메인 루프 실행
